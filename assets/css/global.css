@@ -1,6 +1,7 @@
 /* root CSS variables */
 :root {
     --regular-color: #78909C;
+    --white-color: #ffffff;
     
     --dark-color: #37474F;
     
@@ -11,12 +12,11 @@
     --submedium-color: #dde3e6;
     --supermedium-color: #90A4AE;
     
-    --red-color: #E74C3C;
-    --red-medium-color: #F5B6AF;
-    
+    --red-color: #d14233;
+    --green-color: #27ae60;
     --blue-color: #28f;
     
-    --shadow-color: rgba(55, 71, 79, 0.225);
+    --shadow-color: rgba(55, 71, 79, 0.325);
 
     --topbar-height: 5rem;
 }
@@ -27,8 +27,16 @@
     padding: 0;
     font-family: inherit;
     color: inherit;
+    outline: none;
 }
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--regular-color);
+}
+
+/* container styles */
+.container {
+    width: 100%;
+    height: calc(100vh - 5rem);
+    position: relative;
 }

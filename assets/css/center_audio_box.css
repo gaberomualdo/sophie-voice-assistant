@@ -1,0 +1,45 @@
+.center_audio_box {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.center_audio_box .listen_for_audio {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 .25rem 1rem var(--shadow-color);
+    cursor: pointer;
+    transition: box-shadow .25s, transform .25s, background-color .1s;
+    margin-bottom: 1rem;
+}
+.center_audio_box .listen_for_audio svg {
+    fill: var(--white-color);
+    height: 3rem;
+    width: auto;
+}
+.center_audio_box .listen_for_audio:hover {
+    box-shadow: 0 .5rem 2rem var(--shadow-color);
+    transform: translateY(-.25rem);
+}
+.center_audio_box .listen_for_audio:active {
+    box-shadow: 0 .25rem 1rem var(--shadow-color);
+    transform: translateY(0);
+}
+
+/* listening on/off functionality */
+.center_audio_box .listen_for_audio:not(.listening) svg.finish_icon {
+    display: none;
+}
+.center_audio_box .listen_for_audio.listening svg.start_icon {
+    display: none;
+}
+.center_audio_box .listen_for_audio:not(.listening) {
+    background-color: var(--red-color);
+}
+.center_audio_box .listen_for_audio.listening {
+    background-color: var(--green-color);
+}
