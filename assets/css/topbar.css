@@ -1,0 +1,17 @@
+/* draggable topbar area */
+.topbar {
+    -webkit-app-region: drag;
+
+    height: 2.5rem;
+    box-sizing: border-box;
+    padding: .5rem 1rem;
+    width: 100%;
+    position: fixed;
+    z-index: 9999999999999;
+    top: 0;
+    left: 0;
+    background-color: var(--submedium-color);
+    cursor: default;
+
+    opacity: .6;
+}
