@@ -30,6 +30,11 @@ function createWindow () {
         }
     };
 
+    // macOS has an inset titlebar
+    if(process.platform === "darwin") {
+        windowOptions.titleBarStyle = 'hiddenInset';
+    }
+
     // create window with options
     window = new BrowserWindow(windowOptions);
 
