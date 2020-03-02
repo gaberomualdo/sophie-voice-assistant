@@ -7,14 +7,27 @@
 }
 
 .center_audio_box .listen_for_audio {
-    width: 7rem;
-    height: 7rem;
+    --audio-button-diameter: 7rem;
+    height: var(--audio-button-diameter);
+    width: var(--audio-button-diameter);
     border-radius: 50%;
     border: none;
     box-shadow: 0 .25rem 1rem var(--shadow-color);
     cursor: pointer;
-    transition: box-shadow .25s, transform .25s, background-color .1s;
+    transition: box-shadow .25s, margin-top .25s, margin-bottom .25s, background-color .1s;
     margin-bottom: 1rem;
+    position: relative;
+}
+.center_audio_box .listen_for_audio::before {
+    --audio-wave-height: .75rem;
+    height: var(--audio-wave-height);
+    content: "";
+    width: 100vw;
+    top: calc((var(--audio-button-diameter) - var(--audio-wave-height)) / 2);
+    position: absolute;
+    background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);;
+    left: calc(-1 * (100vw - var(--audio-button-diameter)) / 2);
+    z-index: -9999;
 }
 .center_audio_box .listen_for_audio svg {
     fill: var(--white-color);
@@ -23,11 +36,13 @@
 }
 .center_audio_box .listen_for_audio:hover {
     box-shadow: 0 .5rem 2rem var(--shadow-color);
-    transform: translateY(-.25rem);
+    margin-top: -.25rem;
+    margin-bottom: 1.25rem;
 }
 .center_audio_box .listen_for_audio:active {
     box-shadow: 0 .25rem 1rem var(--shadow-color);
-    transform: translateY(0);
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 /* listening on/off functionality */
