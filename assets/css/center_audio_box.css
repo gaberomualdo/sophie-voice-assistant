@@ -18,17 +18,6 @@
     margin-bottom: 1rem;
     position: relative;
 }
-.center_audio_box .listen_for_audio::before {
-    --audio-wave-height: .75rem;
-    height: var(--audio-wave-height);
-    content: "";
-    width: 100vw;
-    top: calc((var(--audio-button-diameter) - var(--audio-wave-height)) / 2);
-    position: absolute;
-    background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);;
-    left: calc(-1 * (100vw - var(--audio-button-diameter)) / 2);
-    z-index: -9999;
-}
 .center_audio_box .listen_for_audio svg {
     fill: var(--white-color);
     height: 3rem;
@@ -39,11 +28,53 @@
     margin-top: -.25rem;
     margin-bottom: 1.25rem;
 }
+.center_audio_box .listen_for_audio:hover::before {
+    margin-top: .25rem;
+}
+.center_audio_box .listen_for_audio:active::before {
+    margin-top: 0;
+}
 .center_audio_box .listen_for_audio:active {
     box-shadow: 0 .25rem 1rem var(--shadow-color);
     margin-top: 0;
     margin-bottom: 1rem;
 }
+
+/* wave background behind button */
+.center_audio_box .listen_for_audio::before {
+    --audio-wave-height: .75rem;
+    height: var(--audio-wave-height);
+    content: "";
+    width: 100vw;
+    top: calc((var(--audio-button-diameter) - var(--audio-wave-height)) / 2);
+    position: absolute;
+    left: calc(-1 * (100vw - var(--audio-button-diameter)) / 2);
+    z-index: -9999;
+    transition: margin-top .25s;
+
+    /* loading background and animation */
+    background-image: repeating-linear-gradient(120deg,
+        #f1c40f 3%, #f1c40f 13%,
+        var(--white-color) 13%, var(--white-color) 19.67%,
+        #3498db 19.67%, #3498db 29.67%,
+        var(--white-color) 29.67%, var(--white-color) 36.34%,
+        #e67e22 36.34%, #e67e22 46.34%,
+        var(--white-color) 46.34%, var(--white-color) 53%,
+        #8e44ad 53%, #8e44ad 63%,
+        var(--white-color) 63%, var(--white-color) 69.67%
+    );
+
+    animation: moving-background 3s linear 0s infinite;
+}
+@keyframes moving-background {
+    from {
+        background-position: 0;
+    }
+    to {
+        background-position: 100vw;
+    }
+}
+
 
 /* listening on/off functionality */
 .center_audio_box .listen_for_audio:not(.listening) svg.finish_icon {
@@ -58,3 +89,23 @@
 .center_audio_box .listen_for_audio.listening {
     background-color: var(--green-color);
 }
+
+/* finish icon blinking effect
+@keyframes blinking {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.center_audio_box .listen_for_audio svg.finish_icon {
+    animation: blinking 1s linear 0s infinite alternate;
+}*/
