@@ -50,18 +50,19 @@
     position: absolute;
     left: calc(-1 * (100vw - var(--audio-button-diameter)) / 2);
     z-index: -9999;
-    transition: margin-top .25s;
+    transition: margin-top .25s, opacity .1s;
+    opacity: 1;
 
     /* loading background and animation */
-    background-image: repeating-linear-gradient(120deg,
-        #f1c40f 3%, #f1c40f 13%,
-        var(--white-color) 13%, var(--white-color) 19.67%,
-        #3498db 19.67%, #3498db 29.67%,
-        var(--white-color) 29.67%, var(--white-color) 36.34%,
-        #e67e22 36.34%, #e67e22 46.34%,
-        var(--white-color) 46.34%, var(--white-color) 53%,
-        #8e44ad 53%, #8e44ad 63%,
-        var(--white-color) 63%, var(--white-color) 69.67%
+    background-image: repeating-linear-gradient(90deg,
+        var(--dark-color) 0%, var(--dark-color) 10%,
+        var(--white-color) 10%, var(--white-color) 12.5%,
+        var(--dark-color) 12.5%, var(--dark-color) 22.5%,
+        var(--white-color) 22.5%, var(--white-color) 25%,
+        var(--dark-color) 25%, var(--dark-color) 35%,
+        var(--white-color) 35%, var(--white-color) 37.5%,
+        var(--dark-color) 37.5%, var(--dark-color) 47.5%,
+        var(--white-color) 47.5%, var(--white-color) 50%
     );
 
     animation: moving-background 3s linear 0s infinite;
@@ -88,6 +89,9 @@
 }
 .center_audio_box .listen_for_audio.listening {
     background-color: var(--green-color);
+}
+.center_audio_box .listen_for_audio:not(.listening)::before {
+    opacity: 0;
 }
 
 /* finish icon blinking effect

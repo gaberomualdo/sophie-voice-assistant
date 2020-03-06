@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/xtrp/sophie/issues"
   },
-  "homepage": "https://github.com/xtrp/sophie#readme"
+  "homepage": "https://github.com/xtrp/sophie#readme",
+  "dependencies": {
+    "uuid": "^7.0.2"
+  }
 }
