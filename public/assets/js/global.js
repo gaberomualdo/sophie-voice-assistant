@@ -5,7 +5,7 @@ const uuid = require('electron').remote.require('uuid');
 
 // event fire function
 // some code taken from user Kooilnc on https://stackoverflow.com/questions/2705583/how-to-simulate-a-click-with-javascript
-function fireDOMEvent(el, etype){
+function fireDOMEvent(el, etype) {
     if (el.fireEvent) {
         el.fireEvent('on' + etype);
     } else {
@@ -19,8 +19,8 @@ function fireDOMEvent(el, etype){
 const microphoneBtnElm = document.querySelector('.center_audio_box .listen_for_audio');
 
 // press space to click microphone btn
-document.addEventListener('keydown', (e) => {
-    if(e.keyCode == 32) {
+document.addEventListener('keydown', e => {
+    if (e.keyCode == 32) {
         // space bar was hit, simulation microphone btn click
         fireDOMEvent(microphoneBtnElm, 'click');
     }
@@ -30,8 +30,7 @@ document.addEventListener('keydown', (e) => {
 // code from most of this function taken from Bryan Jennings on https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
 const recordAudioWithMicrophone = () => {
     return new Promise(resolve => {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
             const mediaRecorder = new MediaRecorder(stream);
             const audioChunks = [];
 
@@ -46,17 +45,17 @@ const recordAudioWithMicrophone = () => {
             const stop = () => {
                 return new Promise(resolve => {
                     mediaRecorder.addEventListener('stop', () => {
-                    const audioBlob = new Blob(audioChunks);
-                    const audioURL = URL.createObjectURL(audioBlob);
-                    const audio = new Audio(audioURL);
-                    const play = () => {
-                        audio.play();
-                    };
+                        const audioBlob = new Blob(audioChunks);
+                        const audioURL = URL.createObjectURL(audioBlob);
+                        const audio = new Audio(audioURL);
+                        const play = () => {
+                            audio.play();
+                        };
 
-                    resolve({ audioBlob, audioURL, play });
-                });
+                        resolve({ audioBlob, audioURL, play });
+                    });
 
-                mediaRecorder.stop();
+                    mediaRecorder.stop();
                 });
             };
 
@@ -69,15 +68,15 @@ const recordAudioWithMicrophone = () => {
 let audioRecorder = null;
 
 // onclick event for record audio button
-microphoneBtnElm.addEventListener('click', async (e) => {
+microphoneBtnElm.addEventListener('click', async e => {
     microphoneBtnElm.blur();
-    
-    if(!navigator.onLine) {
-        alert("No Internet Connection");
+
+    if (!navigator.onLine) {
+        alert('No Internet Connection');
         return;
     }
 
-    if(!microphoneBtnElm.classList.contains('listening')) {
+    if (!microphoneBtnElm.classList.contains('listening')) {
         // microphone is listening, start recording audio
         audioRecorder = await recordAudioWithMicrophone();
         audioRecorder.start();
@@ -85,34 +84,36 @@ microphoneBtnElm.addEventListener('click', async (e) => {
         setTimeout(() => {
             microphoneBtnElm.classList.toggle('listening');
         }, 250);
-    }else {
-        microphoneBtnElm.classList.toggle('listening');
+    } else {
+        setTimeout(async () => {
+            microphoneBtnElm.classList.toggle('listening');
 
-        // microphone ended listening, end recording and parse
-        
-        // recorded audio obj
-        const recordedAudio = await audioRecorder.stop();
-        
-        // play audio (for testing purposes)
-        // recordedAudio.play();
+            // microphone ended listening, end recording and parse
 
-        // recorded audio filename (for use later)
-        const recordedAudioFilename = uuid.v4() + '.wav';
+            // recorded audio obj
+            const recordedAudio = await audioRecorder.stop();
 
-        // audio blob
-        let audioBlob = recordedAudio.audioBlob;
-        audioBlob.lastModifiedDate = new Date();
-        audioBlob.name = recordedAudioFilename;
-        
-        // read recorded audio into wav file
-        const fileReaderObj = new FileReader();
-        fileReaderObj.onload = function() {
-            const recordedAudioFilePath = './raw_audio/inputted/' + recordedAudioFilename;
-            fs.writeFileSync(recordedAudioFilePath, Buffer.from(new Uint8Array(this.result)));
-            
-            // send audio file path to main process app module for analysis
-            ipcRenderer.send('interpret-audio', recordedAudioFilePath);
-        };
-        fileReaderObj.readAsArrayBuffer(audioBlob);
+            // play audio (for testing purposes)
+            // recordedAudio.play();
+
+            // recorded audio filename (for use later)
+            const recordedAudioFilename = uuid.v4() + '.wav';
+
+            // audio blob
+            let audioBlob = recordedAudio.audioBlob;
+            audioBlob.lastModifiedDate = new Date();
+            audioBlob.name = recordedAudioFilename;
+
+            // read recorded audio into wav file
+            const fileReaderObj = new FileReader();
+            fileReaderObj.onload = function() {
+                const recordedAudioFilePath = './raw_audio/inputted/' + recordedAudioFilename;
+                fs.writeFileSync(recordedAudioFilePath, Buffer.from(new Uint8Array(this.result)));
+
+                // send audio file path to main process app module for analysis
+                ipcRenderer.send('interpret-audio', recordedAudioFilePath);
+            };
+            fileReaderObj.readAsArrayBuffer(audioBlob);
+        }, 250);
     }
 });

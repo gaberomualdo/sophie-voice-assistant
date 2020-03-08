@@ -13,7 +13,7 @@ const fs = require('fs');
 // global window object
 let window;
 
-function createWindow () {
+function createWindow() {
     // window options
     const windowWidth = 400;
     const windowHeight = 700;
@@ -31,7 +31,7 @@ function createWindow () {
     };
 
     // macOS has an inset titlebar
-    if(process.platform === 'darwin') {
+    if (process.platform === 'darwin') {
         windowOptions.titleBarStyle = 'hiddenInset';
     }
 
@@ -39,7 +39,7 @@ function createWindow () {
     window = new BrowserWindow(windowOptions);
 
     // load main HTML file into window with platform info
-    window.loadFile('index.html');
+    window.loadFile('./public/index.html');
 }
 
 // create window
@@ -48,17 +48,17 @@ app.on('ready', createWindow);
 // quit when all windows are closed
 app.on('window-all-closed', () => {
     // on macOS apps stay open until quit in menu-bar or w/Cmd+Q
-    if (process.platform !== 'darwin'){
+    if (process.platform !== 'darwin') {
         app.quit();
     }
 });
 
 // on macOS re-create app window when app icon is clicked
 app.on('activate', () => {
-    if (window === null){
+    if (window === null) {
         createWindow();
     }
 });
 
 /* app module for communicating with frontend, APIs, etc. */
-require('./app');
+require('./app/app');

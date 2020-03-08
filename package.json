@@ -1,24 +1,24 @@
 {
-  "name": "sophie",
-  "version": "0.1.0",
-  "description": "Voice assistant written with Node.js and Electron, with IBM Cloud and macOS text to speech.",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "pack": "build --dir",
-    "dist": "build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xtrp/sophie.git"
-  },
-  "author": "Fred Adams <xtrp@xtrp.io>",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/xtrp/sophie/issues"
-  },
-  "homepage": "https://github.com/xtrp/sophie#readme",
-  "dependencies": {
-    "uuid": "^7.0.2"
-  }
+    "name": "sophie",
+    "version": "0.1.0",
+    "description": "Voice assistant written with Node.js and Electron, with IBM Cloud and macOS text to speech.",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "pack": "build --dir",
+        "dist": "build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xtrp/sophie.git"
+    },
+    "author": "Fred Adams <xtrp@xtrp.io>",
+    "license": "UNLICENSED",
+    "bugs": {
+        "url": "https://github.com/xtrp/sophie/issues"
+    },
+    "homepage": "https://github.com/xtrp/sophie#readme",
+    "dependencies": {
+        "uuid": "^7.0.2"
+    }
 }
