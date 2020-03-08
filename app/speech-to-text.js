@@ -38,7 +38,7 @@ const SpeechToText = (filePath, API_KEYS, callback) => {
             let confidenceDivisor = 0;
 
             responseText['results'].forEach(result => {
-                const currentResult = removeTrailingSpaces(result['alternatives'][0]['transcript'].replace(/ %HESITATION/g, ''));
+                const currentResult = removeTrailingSpaces(result['alternatives'][0]['transcript'].replace(/ %HESITATION/g, '')).toLowerCase();
 
                 confidenceTotal += result['alternatives'][0]['confidence'] * currentResult.length;
                 confidenceDivisor += currentResult.length;

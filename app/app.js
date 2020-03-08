@@ -4,9 +4,11 @@ const fs = require('fs');
 const { exec } = require('child_process');
 
 // text to speech and speech to text modules
-// text to speech and speech to text modules
 const SpeechToText = require('./speech-to-text');
 const TextToSpeech = require('./text-to-speech');
+
+// AI module
+const AI = require('./ai/ai');
 
 // get api keys from file and store in vars
 let API_KEYS;
@@ -47,6 +49,11 @@ ipcMain.on('interpret-audio', (event, filePath) => {
 
             SpeechToText(newFilePath, API_KEYS, (transcript, confidence) => {
                 console.log(`Heard "${transcript}" with ${confidence * 100}% confidence`);
+
+                // pass in transcript to AI module
+                AI(transcript, response => {
+                    TextToSpeech(response, (responseType, responseArgs) => {});
+                });
             });
         }
     );
