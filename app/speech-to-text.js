@@ -19,9 +19,8 @@ const removeTrailingSpaces = text => {
 };
 
 // main speech to text function to be exported
-const SpeechToText = (filePath, API_KEYS) => {
+const SpeechToText = (filePath, API_KEYS, callback) => {
     // split filepath into filename and filedir
-    console.log(process.cwd() + ' to ' + path.dirname(filePath));
     const fileDir = path.relative(process.cwd(), path.dirname(filePath));
     const filename = path.basename(filePath);
 
@@ -32,8 +31,6 @@ const SpeechToText = (filePath, API_KEYS) => {
             if (error) console.log(error.message);
             const responseText = JSON.parse(stdout);
 
-            console.log(JSON.stringify(responseText));
-
             // calculate final audio transcript and confidence percentage
             let finalAudioTranscript = '';
             let finalConfidencePercentage = 0;
@@ -41,17 +38,22 @@ const SpeechToText = (filePath, API_KEYS) => {
             let confidenceDivisor = 0;
 
             responseText['results'].forEach(result => {
-                const currentResult = removeTrailingSpaces(result['alternatives'][0]['transcript']);
+                const currentResult = removeTrailingSpaces(result['alternatives'][0]['transcript'].replace(/ %HESITATION/g, ''));
 
                 confidenceTotal += result['alternatives'][0]['confidence'] * currentResult.length;
                 confidenceDivisor += currentResult.length;
                 finalAudioTranscript += currentResult + ' ';
             });
 
-            finalConfidencePercentage = confidenceTotal / confidenceDivisor;
+            // remove trailing space from audio transcript
+            finalAudioTranscript = finalAudioTranscript.slice(0, -1);
 
-            console.log(finalAudioTranscript + '"');
-            console.log(finalConfidencePercentage);
+            // calculate final confidence percentage (and round to two decimal places)
+            finalConfidencePercentage = confidenceTotal / confidenceDivisor;
+            finalConfidencePercentage = Math.round((finalConfidencePercentage + Number.EPSILON) * 100) / 100;
+
+            // return transcript and confidence to callback function
+            callback(finalAudioTranscript, finalConfidencePercentage);
         }
     );
 };

@@ -45,7 +45,9 @@ ipcMain.on('interpret-audio', (event, filePath) => {
             // delete original WAV
             exec(`rm ${filePathAbs}`, () => {});
 
-            SpeechToText(newFilePath, API_KEYS);
+            SpeechToText(newFilePath, API_KEYS, (transcript, confidence) => {
+                console.log(`Heard "${transcript}" with ${confidence * 100}% confidence`);
+            });
         }
     );
 });
