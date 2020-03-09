@@ -7,10 +7,10 @@ const removeTrailingSpaces = text => {
     let endInd = 0;
     const textAsArr = text.split('');
     textAsArr.forEach((letter, letterInd) => {
-        if (letter == ' ' && endInd == 0) {
+        if (letter === ' ' && endInd === 0) {
             startInd = letterInd + 1;
         }
-        if (letter != ' ') {
+        if (letter !== ' ') {
             endInd = letterInd + 1;
         }
     });
@@ -19,7 +19,7 @@ const removeTrailingSpaces = text => {
 };
 
 // main speech to text function to be exported
-const SpeechToText = (filePath, API_KEYS, callback) => {
+const SpeechToText = (filePath, API_KEYS, CONFIG, callback) => {
     // split filepath into filename and filedir
     const fileDir = path.relative(process.cwd(), path.dirname(filePath));
     const filename = path.basename(filePath);

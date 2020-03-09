@@ -10,11 +10,18 @@ const TextToSpeech = require('./text-to-speech');
 // AI module
 const AI = require('./ai/ai');
 
-// get api keys from file and store in vars
+// get api keys from file and store in var
 let API_KEYS;
 fs.readFile('api_keys.json', (err, content) => {
     if (err) throw err;
     API_KEYS = JSON.parse(content);
+});
+
+// get config info from file and store in var
+let CONFIG;
+fs.readFile('config.json', (err, content) => {
+    if (err) throw err;
+    CONFIG = JSON.parse(content);
 });
 
 // function to handle exec callbacks
@@ -47,12 +54,12 @@ ipcMain.on('interpret-audio', (event, filePath) => {
             // delete original WAV
             exec(`rm ${filePathAbs}`, () => {});
 
-            SpeechToText(newFilePath, API_KEYS, (transcript, confidence) => {
+            SpeechToText(newFilePath, API_KEYS, CONFIG, (transcript, confidence) => {
                 console.log(`Heard "${transcript}" with ${confidence * 100}% confidence`);
 
                 // pass in transcript to AI module
                 AI(transcript, response => {
-                    TextToSpeech(response, (responseType, responseArgs) => {});
+                    TextToSpeech(response, CONFIG, (responseType, responseArgs) => {});
                 });
             });
         }
