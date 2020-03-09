@@ -22,6 +22,8 @@ const AI = (transcript, callback) => {
             date.getMonth()
         ];
         const response = `Today is ${month} ${date.getDate()}, ${date.getFullYear()}`;
+
+        callback(response);
     }
 };
 
