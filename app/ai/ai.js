@@ -25,6 +25,10 @@ const AI = (transcript, callback) => {
 
         callback(response);
     }
+
+    if (transcript === 'what is two plus two') {
+        callback('two plus two is four');
+    }
 };
 
 module.exports = AI;

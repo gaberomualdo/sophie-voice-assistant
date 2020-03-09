@@ -1,21 +1,22 @@
 /* root CSS variables */
 :root {
-    --regular-color: #78909C;
+    --regular-color: #78909c;
     --white-color: #ffffff;
-    
-    --dark-color: #37474F;
-    
-    --light-color: #ECEFF1;
 
-    --medium-color: #B0BEC5;
-    --somewhat-submedium-color: #D5DBDE;
+    --dark-color: #37474f;
+    --subdark-color: #546e7a;
+
+    --light-color: #eceff1;
+
+    --medium-color: #b0bec5;
+    --somewhat-submedium-color: #d5dbde;
     --submedium-color: #dde3e6;
-    --supermedium-color: #90A4AE;
-    
+    --supermedium-color: #90a4ae;
+
     --red-color: #d14233;
     --green-color: #27ae60;
     --blue-color: #28f;
-    
+
     --shadow-color: rgba(55, 71, 79, 0.325);
 
     --topbar-height: 5rem;

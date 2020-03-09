@@ -4,10 +4,29 @@
 
     height: 2.5rem;
     box-sizing: border-box;
-    padding: .5rem 1rem;
+    padding: 0.35rem 0.7rem;
     width: 100%;
-    background-color: var(--submedium-color);
+    background-color: var(--light-color);
     cursor: default;
+}
 
-    opacity: .6;
+/* connection status */
+.topbar .connection_status {
+    float: right;
+    height: 1.8rem;
+    width: 1.8rem;
+}
+.topbar .connection_status svg {
+    width: 100%;
+    height: auto;
+    fill: var(--subdark-color) !important;
+}
+.topbar .connection_status > svg.offline {
+    opacity: 0.5;
+}
+.topbar .connection_status.online > svg.offline {
+    display: none;
+}
+.topbar .connection_status:not(.online) > svg.online {
+    display: none;
 }

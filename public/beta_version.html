@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sophie: Voice Assistant</title>
+
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/balloon.css" />
+    </head>
+    <body>
+        <!-- topbar -->
+        <div class="topbar">
+            <div class="connection_status" aria-label="No Internet Connection" data-balloon-pos="left">
+                <svg class="offline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12 16.32c.843 0 1.65.257 2.345.735l-2.345 2.487-2.345-2.487c.695-.478 1.502-.735 2.345-.735zm0-1c-1.479 0-2.817.636-3.787 1.664l3.787 4.016 3.787-4.016c-.97-1.028-2.308-1.664-3.787-1.664zm0-5.116c2.387 0 4.648.876 6.461 2.485l-.969 1.028c-1.556-1.308-3.472-2.018-5.492-2.018-2.021 0-3.937.71-5.492 2.018l-.969-1.028c1.813-1.609 4.074-2.485 6.461-2.485zm0-1c-3.071 0-5.852 1.32-7.864 3.455l2.33 2.472c1.417-1.502 3.373-2.431 5.534-2.431s4.117.929 5.534 2.431l2.33-2.472c-2.012-2.135-4.793-3.455-7.864-3.455zm0-5.204c3.949 0 7.682 1.517 10.607 4.291l-1.021 1.083c-2.656-2.452-6.023-3.791-9.586-3.791s-6.93 1.339-9.586 3.791l-1.021-1.083c2.925-2.774 6.658-4.291 10.607-4.291zm0-1c-4.687 0-8.929 2.015-12 5.272l2.389 2.533c2.459-2.609 5.857-4.222 9.611-4.222s7.152 1.613 9.611 4.222l2.389-2.533c-3.071-3.257-7.313-5.272-12-5.272z"
+                    />
+                </svg>
+                <svg class="online" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M8.213 16.984c.97-1.028 2.308-1.664 3.787-1.664s2.817.636 3.787 1.664l-3.787 4.016-3.787-4.016zm-1.747-1.854c1.417-1.502 3.373-2.431 5.534-2.431s4.118.929 5.534 2.431l2.33-2.472c-2.012-2.134-4.793-3.454-7.864-3.454s-5.852 1.32-7.864 3.455l2.33 2.471zm-4.078-4.325c2.46-2.609 5.859-4.222 9.612-4.222s7.152 1.613 9.612 4.222l2.388-2.533c-3.071-3.257-7.313-5.272-12-5.272s-8.929 2.015-12 5.272l2.388 2.533z"
+                    />
+                </svg>
+            </div>
+        </div>
+
+        <!-- main container and app -->
+        <div class="container">
+            <!-- center audio box with microphone icon and loader -->
+            <div class="center_audio_box">
+                <button class="listen_for_audio">
+                    <svg class="start_icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M16 10c0 2.209-1.791 4-4 4s-4-1.791-4-4v-6c0-2.209 1.791-4 4-4s4 1.791 4 4v6zm4-2v2c0 4.418-3.582 8-8 8s-8-3.582-8-8v-2h2v2c0 3.309 2.691 6 6 6s6-2.691 6-6v-2h2zm-7 13.03v-2.03h-2v2.03c-2.282.139-4 .744-4 1.47 0 .829 2.238 1.5 5 1.5s5-.671 5-1.5c0-.726-1.718-1.331-4-1.47z"
+                        />
+                    </svg>
+                    <svg class="finish_icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z" />
+                    </svg>
+                </button>
+                <p class="bottom_desc_text">or press <strong>space</strong></p>
+            </div>
+
+            <!-- assistant response text box, text with what it says -->
+            <div class="assistant_response_box"></div>
+        </div>
+
+        <!-- scripts -->
+        <script src="assets/js/global.js"></script>
+    </body>
+</html>

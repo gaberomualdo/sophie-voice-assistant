@@ -39,7 +39,7 @@ function createWindow() {
     window = new BrowserWindow(windowOptions);
 
     // load main HTML file into window with platform info
-    window.loadFile('./public/index.html');
+    window.loadFile('./public/beta_version.html');
 }
 
 // create window

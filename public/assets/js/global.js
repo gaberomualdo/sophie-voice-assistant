@@ -3,6 +3,18 @@ const { ipcRenderer } = require('electron');
 const fs = require('electron').remote.require('fs');
 const uuid = require('electron').remote.require('uuid');
 
+// show online connection if connected to network
+setInterval(() => {
+    const connectionStatusIcon = document.querySelector('.topbar .connection_status');
+    if (navigator.onLine && !connectionStatusIcon.classList.contains('online')) {
+        connectionStatusIcon.classList.add('online');
+        connectionStatusIcon.setAttribute('aria-label', 'Connected');
+    } else if (!navigator.onLine && connectionStatusIcon.classList.contains('online')) {
+        connectionStatusIcon.classList.remove('online');
+        connectionStatusIcon.setAttribute('aria-label', 'No Internet Connection');
+    }
+}, 1000 / 60);
+
 // event fire function
 // some code taken from user Kooilnc on https://stackoverflow.com/questions/2705583/how-to-simulate-a-click-with-javascript
 function fireDOMEvent(el, etype) {
