@@ -1,0 +1,15 @@
+.status_bar {
+    height: 1.25rem;
+    background-color: var(--dark-color);
+    display: block;
+    clear: both;
+}
+.status_bar .text {
+    color: var(--white-color);
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.33rem;
+    letter-spacing: 0.05rem;
+}

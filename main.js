@@ -21,10 +21,10 @@ function createWindow() {
     let windowOptions = {
         width: windowWidth,
         height: windowHeight,
-        minWidth: windowWidth,
+        /*minWidth: windowWidth,
         minHeight: windowHeight,
         maxWidth: windowWidth,
-        maxHeight: windowHeight,
+        maxHeight: windowHeight,*/
         webPreferences: {
             nodeIntegration: true
         }

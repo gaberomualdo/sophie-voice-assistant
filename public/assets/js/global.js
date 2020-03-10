@@ -3,18 +3,6 @@ const { ipcRenderer } = require('electron');
 const fs = require('electron').remote.require('fs');
 const uuid = require('electron').remote.require('uuid');
 
-// show online connection if connected to network
-setInterval(() => {
-    const connectionStatusIcon = document.querySelector('.topbar .connection_status');
-    if (navigator.onLine && !connectionStatusIcon.classList.contains('online')) {
-        connectionStatusIcon.classList.add('online');
-        connectionStatusIcon.setAttribute('aria-label', 'Connected');
-    } else if (!navigator.onLine && connectionStatusIcon.classList.contains('online')) {
-        connectionStatusIcon.classList.remove('online');
-        connectionStatusIcon.setAttribute('aria-label', 'No Internet Connection');
-    }
-}, 1000 / 60);
-
 // event fire function
 // some code taken from user Kooilnc on https://stackoverflow.com/questions/2705583/how-to-simulate-a-click-with-javascript
 function fireDOMEvent(el, etype) {
@@ -27,8 +15,36 @@ function fireDOMEvent(el, etype) {
     }
 }
 
+// get config info from file and store in var
+const CONFIG = JSON.parse(fs.readFileSync('config.json'));
+
 // elm variables
 const microphoneBtnElm = document.querySelector('.center_audio_box .listen_for_audio');
+
+// default variables
+const monthsArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// show online connection if connected to network
+setInterval(() => {
+    const connectionStatusIcon = document.querySelector('.topbar .connection_status');
+    if (navigator.onLine && !connectionStatusIcon.classList.contains('online')) {
+        connectionStatusIcon.classList.add('online');
+        connectionStatusIcon.setAttribute('aria-label', 'Connected');
+    } else if (!navigator.onLine && connectionStatusIcon.classList.contains('online')) {
+        connectionStatusIcon.classList.remove('online');
+        connectionStatusIcon.setAttribute('aria-label', 'No Internet Connection');
+    }
+}, 1000 / CONFIG['APP_FPS']);
+
+// show current date
+setInterval(() => {
+    const currentDateElm = document.querySelector('.masthead .current_date');
+    const date = new Date();
+    const currentDateString = `${monthsArray[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    if (currentDateElm.innerText != currentDateString) {
+        currentDateElm.innerText = currentDateString;
+    }
+}, 1000 / CONFIG['APP_FPS']);
 
 // press space to click microphone btn
 document.addEventListener('keydown', e => {

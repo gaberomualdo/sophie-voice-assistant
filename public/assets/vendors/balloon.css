@@ -2,9 +2,9 @@
 /* Balloon.css is used for tooltips. */
 
 :root {
-    --balloon-color: var(--dark-color);
+    --balloon-color: var(--somewhat-subdark-color);
     --balloon-font-size: 12px;
-    --balloon-move: 4px;
+    --balloon-move: 3px;
 }
 
 button[aria-label][data-balloon-pos] {
