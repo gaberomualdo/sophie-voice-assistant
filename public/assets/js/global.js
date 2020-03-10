@@ -19,7 +19,8 @@ function fireDOMEvent(el, etype) {
 const CONFIG = JSON.parse(fs.readFileSync('config.json'));
 
 // elm variables
-const microphoneBtnElm = document.querySelector('.center_audio_box .listen_for_audio');
+const microphoneBtnElm = document.querySelector('.message_input_area .record');
+const messagingAreaElm = document.querySelector('.message_input_area');
 
 // default variables
 const monthsArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -45,6 +46,12 @@ setInterval(() => {
         currentDateElm.innerText = currentDateString;
     }
 }, 1000 / CONFIG['APP_FPS']);
+
+// messaging area functionality
+microphoneBtnElm.addEventListener('click', () => {
+    messagingAreaElm.classList.remove('typing');
+    messagingAreaElm.classList.toggle('listening');
+});
 
 // press space to click microphone btn
 document.addEventListener('keydown', e => {
