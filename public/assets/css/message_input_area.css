@@ -37,28 +37,20 @@
 
 /* listening functionality */
 .message_input_area:not(.listening) .microphone_status,
-.message_input_area:not(.listening) .record,
+.message_input_area:not(.listening) .send,
 .message_input_area.listening .chatbox,
-.message_input_area.listening .send {
+.message_input_area.listening .record {
     display: none;
 }
 
-/* send btn */
-.message_input_area .send {
-    background-color: var(--green-color);
-    border-color: var(--green-color);
+/* icon buttons */
+.message_input_area .icon_button {
     transition: background-size 0.2s, background-color 0.2s, border-color 0.2s;
     position: relative;
     cursor: pointer;
 }
-.message_input_area .send:hover {
-    background-color: var(--dark-green-color);
-    border-color: var(--dark-green-color);
-    background-size: 2rem auto;
-}
 
-.message_input_area img {
-    background-image: url(../img/send_icon_white.png);
+.message_input_area .icon_button img {
     width: 1.785rem;
     height: auto;
     position: absolute;
@@ -69,17 +61,39 @@
     backface-visibility: hidden;
 }
 
-.message_input_area .send:hover img {
+.message_input_area .icon_button:hover img {
     transform: translate(-50%, -50%) scale(1.1);
 }
-.message_input_area .send:active img {
+.message_input_area .icon_button:active img {
     transform: translate(-50%, -50%) scale(1);
+}
+
+/* specific icon buttons */
+.message_input_area .send {
+    background-color: var(--green-color);
+    border-color: var(--green-color);
+}
+.message_input_area .send:hover {
+    background-color: var(--dark-green-color);
+    border-color: var(--dark-green-color);
+}
+
+.message_input_area .record {
+    background-color: var(--red-color);
+    border-color: var(--red-color);
+}
+.message_input_area .record:hover {
+    background-color: var(--dark-red-color);
+    border-color: var(--dark-red-color);
+}
+.message_input_area .record img {
+    width: 1.5rem;
 }
 
 /* chatbox input */
 .message_input_area .chatbox {
     transition: border-color 0.2s;
 }
-.message_input_area .chatbox:focus {
+.message_input_area.listening .chatbox:focus {
     border-color: var(--green-color);
 }
