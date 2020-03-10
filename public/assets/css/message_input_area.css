@@ -35,12 +35,18 @@
     border-bottom-right-radius: 4px;
 }
 
-/* listening functionality */
+/* listening/typing functionality */
 .message_input_area:not(.listening) .microphone_status,
-.message_input_area:not(.listening) .send,
+.message_input_area:not(.listening) .accept_audio,
+.message_input_area:not(.listening) .reject_audio,
+.message_input_area:not(.typing) .send,
 .message_input_area.listening .chatbox,
 .message_input_area.listening .record {
     display: none;
+}
+
+.message_input_area.listening .left_component {
+    width: calc(100% - 5.5rem);
 }
 
 /* icon buttons */
@@ -68,21 +74,37 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
+/* listening buttons */
+.message_input_area .listening_button {
+    width: 2.75rem;
+}
+.message_input_area .listening_button img {
+    width: 1.6rem;
+}
+
+.message_input_area .listening_button:not(:last-child) {
+    border-radius: 0;
+}
+
 /* specific icon buttons */
-.message_input_area .send {
+.message_input_area .send,
+.message_input_area .accept_audio {
     background-color: var(--green-color);
     border-color: var(--green-color);
 }
-.message_input_area .send:hover {
+.message_input_area .send:hover,
+.message_input_area .accept_audio:hover {
     background-color: var(--dark-green-color);
     border-color: var(--dark-green-color);
 }
 
-.message_input_area .record {
+.message_input_area .record,
+.message_input_area .reject_audio {
     background-color: var(--red-color);
     border-color: var(--red-color);
 }
-.message_input_area .record:hover {
+.message_input_area .record:hover,
+.message_input_area .reject_audio:hover {
     background-color: var(--dark-red-color);
     border-color: var(--dark-red-color);
 }
@@ -92,8 +114,8 @@
 
 /* chatbox input */
 .message_input_area .chatbox {
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, width 0.2s;
 }
-.message_input_area.listening .chatbox:focus {
+.message_input_area.typing .chatbox:focus {
     border-color: var(--green-color);
 }
