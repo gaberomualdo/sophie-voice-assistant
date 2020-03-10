@@ -17,9 +17,11 @@
 
     --red-color: #d14233;
     --green-color: #27ae60;
+    --dark-green-color: #1e8449;
     --blue-color: #28f;
 
     --shadow-color: rgba(55, 71, 79, 0.325);
+    --light-shadow-color: rgba(55, 71, 79, 0.2);
 
     --topbar-height: 5rem;
 }
@@ -35,11 +37,13 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--subdark-color);
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* container styles */
 .container {
     width: 100%;
-    height: calc(100vh - 5rem);
+    height: calc(100vh - 2.5rem);
     position: relative;
 }
